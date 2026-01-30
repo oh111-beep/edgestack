@@ -1,8 +1,10 @@
-export default function Homepage () {
+import Image from "next/image";
+
+export default function HomePage (){
   return(
     <main>
-      <div>
-        <p className="text-4xl text-blue-500">welcome to my home page</p>
+      <div className="">
+
       </div>
     </main>
   )
