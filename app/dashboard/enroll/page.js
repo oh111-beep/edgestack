@@ -1,6 +1,6 @@
  "use client"
 import { db } from "@/config/firebase.config";
-import { Card, CardContent, CardHeader, Checkbox, FormControl, FormControlLabel, FormGroup, InputLabel, MenuItem, Select, TextField } from "@mui/material";
+import { Button, Card, CardContent, CardHeader, Checkbox, Dialog, DialogActions, DialogContent, DialogTitle, FormControl, FormControlLabel, FormGroup, InputLabel, MenuItem, Select, TextField, Typography } from "@mui/material";
 import { addDoc, collection } from "firebase/firestore";
 import { useFormik } from "formik";
 import { useSession } from "next-auth/react";
@@ -18,8 +18,10 @@ const schema = yup.object().shape({
  
 export default function Enroll () {
     const [loading, setLoading] = useState(false);
+    const [open, setOpen] = useState(false);
     const{data : session} = useSession();
-    console.log(session);
+
+    const handleClose = ()=> setOpen(false)
      const {handleChange, handleSubmit,touched,errors,values,setFieldValue } = useFormik({
         initialValues: {
             fullName: "",
@@ -40,7 +42,7 @@ export default function Enroll () {
                 selectedSubject: values.subject,
                 timecreated: new Date(),
             })
-            alert("student enrolled successfully")
+            setOpen(true)
             resetForm();
             setLoading(false)
         }
@@ -148,6 +150,16 @@ export default function Enroll () {
                        </form>
                  </CardContent>
             </Card>
+
+            <Dialog open ={open} onclose={handleClose}>
+                <DialogTitle>Success</DialogTitle>
+                <DialogContent>
+                    <Typography>Student enrolled successfully</Typography>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleClose} variant="contained" color="primary">Close</Button>
+                </DialogActions>
+            </Dialog>
         </main>
     )
 }

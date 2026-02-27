@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { IoIosMenu } from "react-icons/io";
 
+
 export function Navbar () {
     const [dropDown, setDropDown] = useState(false);
      const toggleMenu = () =>{
@@ -14,9 +15,9 @@ export function Navbar () {
                 <h1 className="text-3xl font-bold text-blue-500">EdgeStack</h1>
                 <ul className="hidden md:flex gap-8 text-sm font-semibold">
                     <Link href="/"><li>Home</li></Link>
-                    <li>Enroll</li>
-                    <li>Student-list</li>
-                    <li>Profile</li>
+                    <Link href="/dashboard/enroll"><li>Enroll</li></Link>
+                    <Link href="/dashboard/student-list"><li>Student-list</li></Link>
+                    <Link href="/dashboard/profile"><li>Profile</li></Link>
                 </ul>
                   <Link href="/auth/login">
                   <div className="hidden md:w-20 md:h-10 md:rounded md:shadow md:text-white md:flex md:justify-center items-center bg-blue-500">
@@ -30,10 +31,9 @@ export function Navbar () {
             {dropDown && (
             <div className=" flex flex-col gap-2 justify-center items-center">
                 <ul className=" flex flex-col gap-5 text-sm font-semibold md:hidden">
-                    <Link href="/"><li>Home</li></Link>
-                    <li>Enroll</li>
-                    <li>Student-list</li>
-                    <li>Profile</li>
+                  <Link href="/"><li>Home</li></Link>
+                  <Link href="/dashboard/enroll"><li>Enroll</li></Link>
+                  <Link href="/dashboard/student-list"><li>Student-list</li></Link>
                 </ul>
                 <Link href="/auth/login">
                   <div className="w-20 h-10 rounded shadow text-white flex justify-center items-center bg-blue-500 md:hidden">
